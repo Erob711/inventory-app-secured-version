@@ -16,7 +16,14 @@ app.use(express.json());
 
 // serve up static files (e.g. html and css files)
 app.use(express.static(path.join(__dirname, '../dist')));
+const createRateLimitMiddleware = require("./rateLimitMiddleware");
 
+const appLevelRateLimiter = createRateLimitMiddleware({
+  windowMs: 60 * 60 * 1000, // 1 hour
+  max: 1000, // 1000 requests per hour
+});
+
+app.use(appLevelRateLimiter);
 // api router
 app.use('/', require('./routes'));
 
