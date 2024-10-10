@@ -6,7 +6,6 @@ const { check, validationResult } = require('express-validator');
 //add these lines for rate limiting 
 // const createRateLimitMiddleware = require("../../rateLimitMiddleware");
 
-
 // const routerLevelRateLimiter = createRateLimitMiddleware({
 //   windowMs: 60 * 1000, // 1 minute
 //   max: 30, // 30 requests per minute
