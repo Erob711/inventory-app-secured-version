@@ -3,6 +3,7 @@ import itemsServices from "../../services/Item";
 import userServices from '../../services/User';
 import { useState, useEffect } from "react";
 import "./ItemPage.css";
+// import { useAuth0 } from "@auth0/auth0-react";
 
 const ItemPage = ({ items, setItems, user }) => {
   const id = useParams().id;
@@ -10,6 +11,9 @@ const ItemPage = ({ items, setItems, user }) => {
   const navigate = useNavigate();
 
   const [item, setItem] = useState({});
+  // const { user } = useAuth0();
+
+  // console.log("USER NAME" + user.name);
   async function fetchItems() {
 		try {
 			const items = await itemsServices.getItems();

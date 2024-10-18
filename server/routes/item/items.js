@@ -2,20 +2,24 @@ const express = require("express");
 const itemsRouter = express.Router();
 const { Item } = require("../../models");
 const { check, validationResult } = require('express-validator');
+const { auth } = require('express-oauth2-jwt-bearer');
+const jwtAuthz = require('express-jwt-authz');
 
-//add these lines for rate limiting 
-// const createRateLimitMiddleware = require("../../rateLimitMiddleware");
 
-// const routerLevelRateLimiter = createRateLimitMiddleware({
-//   windowMs: 60 * 1000, // 1 minute
-//   max: 30, // 30 requests per minute
-// });
 
-// itemsRouter.use(routerLevelRateLimiter);
-//add these lines for rate limiting 
+// DEMO: Making sure requests are coming in with valid permissions:
 
-// GET /sauce
+const jwtCheck = auth({
+  audience: 'http://localhost:3000/items',
+  issuerBaseURL: 'https://dev-57j8ewiwddxcplk2.us.auth0.com/',
+  tokenSigningAlg: 'RS256'
+});
+
+// enforce on all endpoints
+itemsRouter.use(jwtCheck);
+
 itemsRouter.get("/", async (req, res, next) => {
+  // console.log("REQ" + req.headers.authorization);
   try {
     const items = await Item.findAll();
     res.send(items);
@@ -24,14 +28,6 @@ itemsRouter.get("/", async (req, res, next) => {
   }
 });
 
-itemsRouter.get("/:id", async (req, res, next) => {
-  try {
-    const item = await Item.findByPk(req.params.id);
-    res.send(item);
-  } catch (error) {
-    next(error);
-  }
-});
 
 itemsRouter.post("/",
   [check('name').not().isEmpty().trim().isAlphanumeric().isLength({ max: 100 }),

@@ -6,13 +6,18 @@ import './Home.css';
 import inventory from './inventory.jpg';
 import cart from './shopping-cart.png';
 import search from './search.png';
+import { useAuth0 } from "@auth0/auth0-react";
 
 
-
-const Home = ({ items, setItems, user }) => {
+const Home = ({ items, setItems }) => {
 	const [search, setSearch] = useState('');
 	const [showAll, setShowAll] = useState(true);
 
+	const [item, setItem] = useState({});
+    const { user } = useAuth0();
+	console.log("USER NAME" + user.name);
+
+	// console.log("USER NAME" + user.);
 	const handleSearch = (e) => {
 		e.preventDefault();
 		const searchData = search;
@@ -52,8 +57,8 @@ const Home = ({ items, setItems, user }) => {
 			<h1>CELC Inc.</h1></a>
 		<ul class="navbar">
 			<li><a href="#home" class="active">Home</a></li>
-			<li><Link to="/login" class= "active">Admin</Link></li>
-			{ user && <li><Link to="/cart" class= "active">Cart</Link></li>}
+			{ user.email === 'emattroberson@gmail.com' && <li><Link to="/login" class= "active">Admin</Link></li> }
+			{ user.email === 'emattroberson@gmail.com' && <li><Link to="/cart" class= "active">Cart</Link></li>}
 		</ul>
 
 		<div class="icons">

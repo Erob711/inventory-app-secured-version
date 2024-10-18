@@ -8,12 +8,13 @@ import user from './user.png';
 import padlock from './padlock.png';
 import search from '../Home/search.png';
 import cart from '../Home/shopping-cart.png';
+// import { useAuth0 } from "@auth0/auth0-react";
 
 const LoginSignup = ({ user, setUser }) => {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-
+    // const { user } = useAuth0();
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
@@ -41,7 +42,9 @@ const LoginSignup = ({ user, setUser }) => {
 			<h1>CELC Inc.</h1></a>
 		<ul class="navbar">
 			<li><a href="#home" class="active">Home</a></li>
-			<li><Link to="/login" class= "active">Admin</Link></li>
+            
+         {/* <li><Link to="/login" class= "active">Admin</Link></li> */}
+            
 		</ul>
 
 		<div class="icons">
