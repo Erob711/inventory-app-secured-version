@@ -8,8 +8,8 @@ const getItems = async () => {
 
 // DEMO: If token does not contain correct signature/permissions 
 // it fails to authorize us on our endpoint
-const tokenResponse = await getInsufficientToken();
-// const tokenResponse = await getToken();
+// const tokenResponse = await getInsufficientToken();
+const tokenResponse = await getToken();
 console.log("TOKEN! " + tokenResponse.access_token);
 
 // DEMO: api call has to use our token, which contains the correct permissions like 

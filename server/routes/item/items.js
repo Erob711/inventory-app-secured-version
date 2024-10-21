@@ -9,14 +9,14 @@ const jwtAuthz = require('express-jwt-authz');
 
 // DEMO: Making sure requests are coming in with valid permissions:
 
-const jwtCheck = auth({
-  audience: 'http://localhost:3000/items',
-  issuerBaseURL: 'https://dev-57j8ewiwddxcplk2.us.auth0.com/',
-  tokenSigningAlg: 'RS256'
-});
+// const jwtCheck = auth({
+//   audience: 'http://localhost:3000/items',
+//   issuerBaseURL: 'https://dev-57j8ewiwddxcplk2.us.auth0.com/',
+//   tokenSigningAlg: 'RS256'
+// });
 
 // enforce on all endpoints
-itemsRouter.use(jwtCheck);
+// itemsRouter.use(jwtCheck);
 
 itemsRouter.get("/", async (req, res, next) => {
   // console.log("REQ" + req.headers.authorization);

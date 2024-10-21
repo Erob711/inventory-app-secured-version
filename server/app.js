@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, '../dist')));
 // const createRateLimitMiddleware = require("./rateLimitMiddleware");
 // const appLevelRateLimiter = createRateLimitMiddleware({
 //   windowMs: 60 * 60 * 1000, // 1 hour
-//   max: 10, // 1000 requests per hour
+//   max: 10, // 10 requests per hour
 // });
 // app.use(appLevelRateLimiter);
 // Uncomment to show rate limiting 
